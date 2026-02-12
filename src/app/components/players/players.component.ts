@@ -26,7 +26,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrl: './players.component.scss'
 })
 export class PlayersComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['rank', 'username', 'maxRecordScore', 'totalGames'];
+  displayedColumns: string[] = ['rank', 'playerName', 'employeeNumber', 'maxRecordScore'];
   dataSource: Player[] = [];
   paginatedData: Player[] = [];
 
@@ -69,16 +69,5 @@ export class PlayersComponent implements OnInit, OnDestroy {
 
   getRank(index: number): number {
     return this.pageIndex * this.pageSize + index + 1;
-  }
-
-  getTotalGames(player: Player): number {
-    if (!player.records) return 0;
-    let total = 0;
-    for (const recordKey in player.records) {
-      if (player.records.hasOwnProperty(recordKey)) {
-        total += player.records[recordKey].totalGames || 0;
-      }
-    }
-    return total;
   }
 }

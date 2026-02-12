@@ -4,19 +4,17 @@ import { getDatabase, ref, onValue, Unsubscribe } from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface PlayerRecord {
-  maxScore: number;
-  totalWins: number;
-  totalLoses: number;
-  totalGames: number;
+  playerName: string;
+  employeeNumber: string;
+  score: number;
+  status?: string;
+  startTime?: string;
 }
 
 export interface Player {
   id: string;
-  username: string;
-  score: number;
-  records?: {
-    [key: string]: PlayerRecord;
-  };
+  playerName: string;
+  employeeNumber: string;
   maxRecordScore: number;
 }
 
@@ -62,26 +60,40 @@ export class FirebaseService {
             const playerData = data[userId];
             const records = playerData.records || {};
             let maxRecordScore = 0;
+            let playerName = '';
+            let employeeNumber = '';
 
-            // Find the highest score across all records
+            // Find the highest score across all records and extract player info
             for (const recordKey in records) {
               if (records.hasOwnProperty(recordKey)) {
-                const recordScore = records[recordKey].maxScore || 0;
+                const record = records[recordKey];
+                const recordScore = record.score || 0;
+
                 if (recordScore > maxRecordScore) {
                   maxRecordScore = recordScore;
+                }
+
+                // Capture player info from the first record (they should all have the same)
+                if (!playerName && record.playerName) {
+                  playerName = record.playerName;
+                }
+                if (!employeeNumber && record.employeeNumber) {
+                  employeeNumber = record.employeeNumber;
                 }
               }
             }
 
-            const player: Player = {
-              id: userId,
-              username: playerData.username || 'Unknown',
-              score: playerData.score || 0,
-              records: records,
-              maxRecordScore: maxRecordScore
-            };
+            // Only add players with records
+            if (Object.keys(records).length > 0) {
+              const player: Player = {
+                id: userId,
+                playerName: playerName || 'Unknown',
+                employeeNumber: employeeNumber || 'N/A',
+                maxRecordScore: maxRecordScore
+              };
 
-            players.push(player);
+              players.push(player);
+            }
           }
         }
 

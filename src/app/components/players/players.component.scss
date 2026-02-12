@@ -39,8 +39,8 @@ mat-card-header {
 }
 
 .username-cell,
-.score-cell,
-.games-cell {
+.employee-cell,
+.score-cell {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -56,12 +56,12 @@ mat-card-header {
   color: #1976d2;
 }
 
-.score-icon {
-  color: #f57c00;
+.employee-icon {
+  color: #7c4dff;
 }
 
-.games-icon {
-  color: #388e3c;
+.score-icon {
+  color: #f57c00;
 }
 
 ::ng-deep {
