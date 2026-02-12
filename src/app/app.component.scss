@@ -1,0 +1,59 @@
+.app-toolbar {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .menu-button {
+    margin-right: 16px;
+  }
+
+  .toolbar-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+}
+
+.sidenav-container {
+  display: flex;
+  height: calc(100vh - 64px);
+}
+
+.app-sidenav {
+  width: 250px;
+
+  mat-nav-list {
+    padding: 0;
+
+    mat-list-item {
+      a {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.87);
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.04);
+        }
+
+        &.active {
+          color: #1976d2;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+}

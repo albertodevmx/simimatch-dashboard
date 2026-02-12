@@ -1,0 +1,71 @@
+.players-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.players-card {
+  margin-top: 20px;
+}
+
+mat-card-header {
+  margin-bottom: 20px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.players-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    font-weight: 600;
+    text-align: left;
+    padding: 16px;
+    background-color: #f5f5f5;
+  }
+
+  td {
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  tr:hover {
+    background-color: #fafafa;
+  }
+}
+
+.username-cell,
+.score-cell,
+.games-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.user-icon {
+  color: #1976d2;
+}
+
+.score-icon {
+  color: #f57c00;
+}
+
+.games-icon {
+  color: #388e3c;
+}
+
+::ng-deep {
+  .mat-mdc-paginator {
+    background-color: #f5f5f5;
+  }
+}
