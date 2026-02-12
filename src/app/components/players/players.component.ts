@@ -31,7 +31,7 @@ export class PlayersComponent implements OnInit, OnDestroy {
   paginatedData: Player[] = [];
 
   // Pagination properties
-  pageSize = 25;
+  pageSize = 10;
   pageIndex = 0;
   totalPlayers = 0;
 
