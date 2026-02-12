@@ -1,36 +1,45 @@
-<mat-toolbar color="primary" class="app-toolbar">
-  <button mat-icon-button (click)="toggleSidenav()" class="menu-button">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span class="spacer"></span>
-  <h1 class="toolbar-title">SimiMatch Dashboard</h1>
-  <span class="spacer"></span>
-</mat-toolbar>
+<ng-container *ngIf="isAuthenticated">
+  <mat-toolbar color="primary" class="app-toolbar">
+    <button mat-icon-button (click)="toggleSidenav()" class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <h1 class="toolbar-title">SimiMatch Dashboard</h1>
+    <span class="spacer"></span>
+    <button mat-icon-button (click)="logout()" matTooltip="Cerrar sesión">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
 
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #sidenav
-    [opened]="isSidenavOpen"
-    [mode]="'over'"
-    class="app-sidenav"
-  >
-    <mat-nav-list>
-      <mat-list-item>
-        <mat-icon matListItemIcon>home</mat-icon>
-        <a matListItemTitle routerLink="/" (click)="closeSidenav()" routerLinkActive="active">
-          Inicio
-        </a>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon matListItemIcon>trending_up</mat-icon>
-        <a matListItemTitle routerLink="/top-resultados" (click)="closeSidenav()" routerLinkActive="active">
-          Top Resultados
-        </a>
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+      #sidenav
+      [opened]="isSidenavOpen"
+      [mode]="'over'"
+      class="app-sidenav"
+    >
+      <mat-nav-list>
+        <mat-list-item>
+          <mat-icon matListItemIcon>home</mat-icon>
+          <a matListItemTitle routerLink="/" (click)="closeSidenav()" routerLinkActive="active">
+            Inicio
+          </a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>trending_up</mat-icon>
+          <a matListItemTitle routerLink="/top-resultados" (click)="closeSidenav()" routerLinkActive="active">
+            Top Resultados
+          </a>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
 
-  <mat-sidenav-content class="content">
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <mat-sidenav-content class="content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>
+
+<ng-container *ngIf="!isAuthenticated">
+  <router-outlet></router-outlet>
+</ng-container>
